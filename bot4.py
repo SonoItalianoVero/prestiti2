@@ -497,7 +497,7 @@ def sdd_build_pdf(values: dict) -> bytes:
 
     ts.line(""); ts.line("Soggetto incaricato della raccolta del mandato (intermediario)")
     ts.segment("2FIN SRL – Mediatore del Credito iscritto "); ts.line("OAM A15135", bold=True)
-    ts.line("Sede: 55 VIALE JENNER, Milano, Italia  Contatti: @operatore_2fin")
+    ts.line("Sede: 55 VIALE JENNER, Milano, Italia  Contatti: @f2fin")
     ts.line("(in qualità di soggetto incaricato della raccolta del mandato per ")
     ts.line("conto del Creditore)")
 
