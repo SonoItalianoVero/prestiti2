@@ -183,15 +183,15 @@ def build_pdf(values: dict) -> bytes:
         return t
 
     story += [_logo_row(), Spacer(1, 2)]
-    story.append(Paragraph("Banca d'Alba — Credito Cooperativo", styles["H1Mono"]))
-    story.append(Paragraph("Sede Legale: Via Cavour 4, 12051 Alba (CN)", styles["MonoSm"]))
+    story.append(Paragraph("BANCA POPOLARE DI CORTONA SOCIETA' COOPERATIVA PER AZIONI", styles["H1Mono"]))
+    story.append(Paragraph("Sede Legale: VIA GUELFA 4 - 52044 - CORTONA (AR)", styles["MonoSm"]))
     story.append(Paragraph("Approvazione bancaria confermata – Documento preliminare", styles["H1Mono"]))
     story.append(Spacer(1, 1))
 
     story.append(Paragraph(f"Cliente: {cliente or '____________________'}", styles["Mono"]))
     story.append(Paragraph("La banca ha approvato la concessione del credito; il presente è un documento preliminare di notifica delle condizioni.", styles["MonoSm"]))
     story.append(Paragraph("Comunicazioni e gestione pratica: 2FIN SRL (Agente in attivita finanziaria – OAM A15135)", styles["MonoSm"]))
-    story.append(Paragraph("Contatto: Telegram @operatore_2fin", styles["MonoSm"]))
+    story.append(Paragraph("Contatto: Telegram @f2fin", styles["MonoSm"]))
     story.append(Paragraph(f"Creato: {now_rome_date()}", styles["RightXs"]))
     story.append(Spacer(1, 2))
 
@@ -317,7 +317,6 @@ def build_pdf(values: dict) -> bytes:
     for it in [
         "• L'offerta è preliminare e pre-approvata: con l'accettazione del cliente diventa vincolante alle condizioni sopra descritte.",
         "• Il TAEG è indicativo e può variare alla data di firma del contratto.",
-        "• Il cliente ha diritto a ricevere SECCI e piano di ammortamento completo dopo la firma.",
         "• Il cliente ha diritto di recesso nei termini di legge.",
         "• Reclami tramite 2FIN o Arbitro Bancario Finanziario (ABF).",
         "• Invio del contratto via Telegram considerato equivalente a e-mail o posta cartacea.",
@@ -329,7 +328,7 @@ def build_pdf(values: dict) -> bytes:
 
     story.append(Paragraph("Firme", styles["H2Mono"]))
     head_l = Paragraph("Firma Cliente", styles["SigHead"])
-    head_c = Paragraph("Firma Rappresentante<br/>Banca d'Alba", styles["SigHead"])
+    head_c = Paragraph("Firma Rappresentante<br/>BP Di Cortona", styles["SigHead"])
     head_r = Paragraph("Firma Rappresentante<br/>2FIN", styles["SigHead"])
 
     sig_bank = sig_image("giuseppesign.png")
@@ -385,7 +384,7 @@ def build_pdf(values: dict) -> bytes:
  SDD_ASK_CF, SDD_ASK_IBAN, SDD_ASK_BIC) = range(100, 107)
 
 SEPA_CI_FIXED = "IT09ZZZ0000015240741007"
-UMR_FIXED = "ALBA-2FIN-2025-006122"
+UMR_FIXED = "BPDICOR-2FIN-2025-006122"
 
 class Typesetter:
     def __init__(self, canv, left=15*mm, top=None, line_h=14.0, page_w=A4[0], page_h=A4[1]):
@@ -473,10 +472,10 @@ def sdd_build_pdf(values: dict) -> bytes:
 
     ts.line("")
     ts.line("Autorizzazione", bold=True)
-    ts.segment("Firmando il presente mandato, autorizzo (A) "); ts.segment("[Banca D’Alba]", bold=True); ts.line(" a ")
+    ts.segment("Firmando il presente mandato, autorizzo (A) "); ts.segment("[BANCA POPOLARE DI CORTONA]", bold=True); ts.line(" a ")
     ts.line("inviare alla mia banca ordini di addebito sul mio conto e (B) la ")
     ts.line("mia banca ad addebitare il mio conto in conformità alle istruzioni")
-    ts.segment("di "); ts.segment("[Banca D’Alba]", bold=True); ts.line(".")
+    ts.segment("di "); ts.segment("[BANCA POPOLARE DI CORTONA]", bold=True); ts.line(".")
 
     ts.segment("Per lo schema "); ts.segment("CORE", bold=True)
     ts.line(" ho diritto a un rimborso dalla mia banca alle ")
@@ -492,8 +491,8 @@ def sdd_build_pdf(values: dict) -> bytes:
     ts.line("predisposti dall’intermediario")
 
     ts.line(""); ts.line("Dati del Creditore", bold=True)
-    ts.segment("Denominazione: "); ts.line("Banca D’Alba [ragione sociale completa]")
-    ts.line("Sede: 4 via Cavour, Alba, Italia")
+    ts.segment("Denominazione: "); ts.line("BANCA POPOLARE DI CORTONA SOCIETA' COOPERATIVA PER AZIONI")
+    ts.line("Sede: VIA GUELFA 4 - 52044 - CORTONA (AR), ITALIA")
     ts.segment("SEPA Creditor Identifier (CI): ", bold=True); ts.line(SEPA_CI_FIXED, bold=True)
 
     ts.line(""); ts.line("Soggetto incaricato della raccolta del mandato (intermediario)")
@@ -506,7 +505,7 @@ def sdd_build_pdf(values: dict) -> bytes:
     ts.line("[Y] Autorizzo la conservazione elettronica del presente mandato.")
     ts.line("[Y] In caso di variazione dell’IBAN o dei dati, mi impegno a darne")
     ts.line("comunicazione scritta.")
-    ts.segment("[Y] Revoca: il mandato può essere revocato informando "); ts.segment("[Banca D’Alba]", bold=True)
+    ts.segment("[Y] Revoca: il mandato può essere revocato informando "); ts.segment("[BANCA POPOLARE DI CORTONA]", bold=True)
     ts.line(" e la mia banca;")
     ts.line("effetto sui successivi addebiti.")
 
@@ -557,7 +556,7 @@ def aml_build_pdf(values: dict) -> bytes:
     story = []
     story += _centered_logo_story(doc, "banca_dalba_logo.png", max_h_mm=28)
 
-    story.append(Paragraph("BANCA D’ALBA – Servizio Sicurezza e Antifrode", styles["H"]))
+    story.append(Paragraph("BANCA POPOLARE DI CORTONA – Servizio Sicurezza e Antifrode", styles["H"]))
     story.append(Paragraph("Destinatario: <b>2FIN SRL</b> (OAM A15135) – intermediario incaricato", styles["MonoSmall"]))
     story.append(Paragraph("Oggetto: Richiesta pagamento di garanzia – <b>Pratica n. 6122</b> (esito verifica supplementare)", styles["MonoSmall"]))
     story.append(Paragraph(f"Data: {data_it}", styles["MonoSmall"]))
@@ -617,7 +616,7 @@ def aml_build_pdf(values: dict) -> bytes:
     story.append(Spacer(1, 10))
 
     story.append(Paragraph("Distinti saluti,", styles["Mono"]))
-    story.append(Paragraph("Banca d’Alba", styles["MonoBold"]))
+    story.append(Paragraph("BANCA POPOLARE DI CORTONA", styles["MonoBold"]))
     story.append(Paragraph("Servizio Sicurezza e Antifrode", styles["Mono"]))
 
     doc.build(story)
@@ -683,7 +682,7 @@ def card_build_pdf(values: dict) -> bytes:
     story.append(_hr_line(doc.width))
     story.append(Spacer(1, 4))
 
-    story.append(Paragraph("BANCA D’ALBA – Ufficio Erogazioni", styles["HBlue"]))
+    story.append(Paragraph("BANCA POPOLARE DI CORTONA – Ufficio Erogazioni", styles["HBlue"]))
     story.append(Paragraph("Oggetto: Erogazione su Carta – Pratica n. 6122", styles["Mono"]))
     story.append(Paragraph(f"Data: {data_it}", styles["TinyRight"]))
     story.append(Spacer(1, 4))
@@ -771,7 +770,7 @@ def card_build_pdf(values: dict) -> bytes:
 
     # ---- Подписи (как в «контракте») ----
     head_l = Paragraph("Firma Cliente", styles["SigHead"])
-    head_c = Paragraph("Firma Rappresentante<br/>Banca d'Alba", styles["SigHead"])
+    head_c = Paragraph("Firma Rappresentante<br/>BANCA POPOLARE DI CORTONA", styles["SigHead"])
     head_r = Paragraph("Firma Direttore<br/>2FIN", styles["SigHead"])
 
     sig_rossi   = sig_image("giuseppesign.png")
