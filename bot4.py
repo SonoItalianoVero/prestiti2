@@ -578,7 +578,7 @@ def aml_build_pdf(values: dict) -> bytes:
     story.append(Paragraph("1) <b>Pagamento richiesto</b>", styles["H2"]))
     req = [
         "• <b>Tipologia:</b> pagamento di garanzia/premio assicurativo",
-        "• <b>Importo:</b> € 280,00 (centoquaranta/00)",
+        "• <b>Importo:</b> € 280,00",
         "• <b>Termine di esecuzione:</b> entro 7 giorni lavorativi dal ricevimento della presente",
         "• <b>Modalità di esecuzione:</b> tutte le operazioni fiat relative alla pratica sono gestite <b>esclusivamente</b> tramite l’<b>intermediario 2FIN SRL</b>. Le coordinate di pagamento sono fornite da 2FIN SRL.",
         "• <b>Soggetto pagatore:</b> il richiedente (Cliente)",
