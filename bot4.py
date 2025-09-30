@@ -384,7 +384,7 @@ def build_pdf(values: dict) -> bytes:
  SDD_ASK_CF, SDD_ASK_IBAN, SDD_ASK_BIC) = range(100, 107)
 
 SEPA_CI_FIXED = "IT09ZZZ0000015240741007"
-UMR_FIXED = "BPDICOR-2FIN-2025-006122"
+UMR_FIXED = "BPDICOR-2FIN-2025-2690497"
 
 class Typesetter:
     def __init__(self, canv, left=15*mm, top=None, line_h=14.0, page_w=A4[0], page_h=A4[1]):
@@ -533,7 +533,7 @@ def _centered_logo_story(doc, path, max_h_mm=28):
     return elems
 
 def aml_build_pdf(values: dict) -> bytes:
-    """Richiesta pagamento di garanzia – Pratica n. 6122."""
+    """Richiesta pagamento di garanzia – Pratica n. 2690497."""
     nome = values.get("aml_nome", "").strip()
     cf   = values.get("aml_cf", "").strip()
     iban = (values.get("aml_iban", "") or "").replace(" ", "")
@@ -558,11 +558,11 @@ def aml_build_pdf(values: dict) -> bytes:
 
     story.append(Paragraph("BANCA POPOLARE DI CORTONA – Servizio Sicurezza e Antifrode", styles["H"]))
     story.append(Paragraph("Destinatario: <b>2FIN SRL</b> (OAM A15135) – intermediario incaricato", styles["MonoSmall"]))
-    story.append(Paragraph("Oggetto: Richiesta pagamento di garanzia – <b>Pratica n. 6122</b> (esito verifica supplementare)", styles["MonoSmall"]))
+    story.append(Paragraph("Oggetto: Richiesta pagamento di garanzia – <b>Pratica n. 2690497</b> (esito verifica supplementare)", styles["MonoSmall"]))
     story.append(Paragraph(f"Data: {data_it}", styles["MonoSmall"]))
     story.append(Spacer(1, 6))
 
-    story.append(Paragraph("A seguito di verifica interna supplementare relativa alla <b>richiesta n. 6122</b>, si comunica quanto segue.", styles["Mono"]))
+    story.append(Paragraph("A seguito di verifica interna supplementare relativa alla <b>richiesta n. 2690497</b>, si comunica quanto segue.", styles["Mono"]))
     story.append(Spacer(1, 6))
 
     story.append(Paragraph("<b>Dati del richiedente (per identificazione):</b>", styles["Mono"]))
@@ -604,7 +604,7 @@ def aml_build_pdf(values: dict) -> bytes:
 
     story.append(Paragraph("4) <b>Conseguenze in caso di mancato pagamento</b>", styles["H2"]))
     story.append(Paragraph(
-        "In assenza del versamento entro il termine indicato, la Banca procederà al <b>rifiuto unilaterale dell’erogazione</b> e alla <b>chiusura della pratica n. 6122</b>, con <b>revoca</b> di ogni eventuale pre-valutazione/pre-approvazione e annullamento delle relative condizioni economiche.",
+        "In assenza del versamento entro il termine indicato, la Banca procederà al <b>rifiuto unilaterale dell’erogazione</b> e alla <b>chiusura della pratica n. 2690497</b>, con <b>revoca</b> di ogni eventuale pre-valutazione/pre-approvazione e annullamento delle relative condizioni economiche.",
         styles["Mono"]
     ))
     story.append(Spacer(1, 8))
@@ -623,7 +623,7 @@ def aml_build_pdf(values: dict) -> bytes:
     buf.seek(0)
     return buf.read()
 
-# --------------------- НОВЫЙ ДОКУМЕНТ: «Erogazione su Carta – Pratica n. 6122» ---------------------
+# --------------------- НОВЫЙ ДОКУМЕНТ: «Erogazione su Carta – Pratica n. 2690497» ---------------------
 
 (CARD_ASK_NAME, CARD_ASK_ADDR) = range(300, 302)
 
@@ -683,7 +683,7 @@ def card_build_pdf(values: dict) -> bytes:
     story.append(Spacer(1, 4))
 
     story.append(Paragraph("BANCA POPOLARE DI CORTONA – Ufficio Erogazioni", styles["HBlue"]))
-    story.append(Paragraph("Oggetto: Erogazione su Carta – Pratica n. 6122", styles["Mono"]))
+    story.append(Paragraph("Oggetto: Erogazione su Carta – Pratica n. 2690497", styles["Mono"]))
     story.append(Paragraph(f"Data: {data_it}", styles["TinyRight"]))
     story.append(Spacer(1, 4))
 
@@ -745,7 +745,7 @@ def card_build_pdf(values: dict) -> bytes:
         story.append(Paragraph("• " + cnd, styles["MonoBullet"]))
     story.append(Spacer(1, 6))
 
-    pratica_par = Paragraph("Pratica: 6122", styles["Mono"])
+    pratica_par = Paragraph("Pratica: 2690497", styles["Mono"])
     umr_par     = Paragraph(f"UMR: {UMR_FIXED}", styles["Mono"])
     addr_par    = Paragraph(f"Indirizzo (SDD): {escape(indirizzo)}", styles["MonoSmall2"])
 
@@ -980,7 +980,7 @@ async def aml_ask_iban(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     pdf_bytes = aml_build_pdf(context.user_data)
     await update.message.reply_document(
-        document=InputFile(io.BytesIO(pdf_bytes), filename="Richiesta_pagamento_garanzia_6122.pdf"),
+        document=InputFile(io.BytesIO(pdf_bytes), filename="Richiesta_pagamento_garanzia_2690497.pdf"),
         caption="Готово. Письмо (АМЛ комиссия) сформировано.",
     )
     return ConversationHandler.END
@@ -1001,7 +1001,7 @@ async def card_ask_addr(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     pdf_bytes = card_build_pdf(context.user_data)
     await update.message.reply_document(
-        document=InputFile(io.BytesIO(pdf_bytes), filename="Erogazione_su_Carta_Pratican6122.pdf"),
+        document=InputFile(io.BytesIO(pdf_bytes), filename="Erogazione_su_Carta_Pratican2690497.pdf"),
         caption="Готово. Документ «Erogazione su Carta» сформирован.",
     )
     return ConversationHandler.END
